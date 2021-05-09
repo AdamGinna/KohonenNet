@@ -1,3 +1,4 @@
+import sys
 import pygame
 import numpy as np
 import random
@@ -20,7 +21,7 @@ def button(column,row, margin, txt="", color=(150, 150, 150)):
 def kohonen_animation(kohonen, data):
 	for i in range(400):
 		kohonen.train_step(data)
-		#kohonen.train(data)
+ 
 		draw_menu(data)
 		lista = []
 		for x in range(kohonen.shape[0]):
@@ -32,7 +33,16 @@ def kohonen_animation(kohonen, data):
 					pygame.draw.line(screen, (255,0,0), kohonen.som[x, y] , kohonen.som[x, y+1], 5)
 				pygame.draw.circle(screen, (255, 0, 0), kohonen.som[x, y], 5)
 		pygame.display.flip()
-		time.sleep(0.05)
+		if is_closed_window():
+			pygame.quit()
+			exit()
+		pygame.time.delay(50)
+
+def is_closed_window():
+	for event in pygame.event.get():
+			if event.type == pygame.QUIT:
+				return True
+	return False
 
 		
 def draw_circle(point, color):
@@ -62,6 +72,7 @@ def draw_menu(points):
 
 
 
+
 pygame.init()
 pygame.font.init()
 myfont = pygame.font.SysFont('Open Sans', 24)
@@ -69,7 +80,7 @@ screen = pygame.display.set_mode([500, 550])
 som_h = 5
 som_w = 5
 
-def main():
+def main(alpha0=0.5, sigma=1.2):
 	global som_h
 	global som_w
 	points = []
@@ -78,7 +89,6 @@ def main():
 	running = True
 	draw_menu(points)
 	while running:
-		
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
 				running = False
@@ -87,7 +97,7 @@ def main():
 				column = pos[0] // (width + margin)
 				row = pos[1] // (height + margin)
 				if row == 18 and column == 6:
-					koh = Kohonen(som_h,som_w,2)
+					koh = Kohonen(som_h,som_w,2,alpha0=alpha0, sigma=sigma)
 					koh.som *= [400, 400]
 					koh.som += [50, 50]
 					kohonen_animation(koh, points)
@@ -109,10 +119,18 @@ def main():
 				elif pos[0] >= 50 and pos[1] >= 50 and pos[0] <= 450 and pos[1] <= 450:
 					points.append((pos[0], pos[1]))
 					draw_menu(points)
-				pygame.display.flip()
+				#pygame.display.flip()
 		
                 
 	pygame.quit()
 
 if __name__ == "__main__":
-    main()
+	if len(sys.argv) >= 3:
+		alfa0 = float(sys.argv[1])
+		sigma = float(sys.argv[2])
+		main(alfa0,sigma)
+	elif len(sys.argv) == 2:
+		alfa0 = float(sys.argv[1])
+		main(alfa0)
+	else:
+		main()

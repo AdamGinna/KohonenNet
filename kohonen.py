@@ -2,19 +2,18 @@ import numpy as np
 
 class Kohonen(object):
 
-	def __init__(self, h, w,dim):
-		self.shape = (h,w,dim) # dim-przestrzen danych
-		#self.som= np.random.random(self.shape) # np.random.random - zadanie
+	def __init__(self, h, w, dim, alpha0=0.5, sigma = 1.2):
+		self.shape = (h,w,dim)
 		self.som= np.array([[ (j/h, i/w) for i in range(w) ] for j in range(h)])
 		self.data = []
-		self.alpha0 = 0.5
-		self.sigma = 1.2
+		self.alpha0 = alpha0
+		self.sigma = sigma
 		self.lamb = 300
 
 		self.steps = 300
 		self.step = 0
 
-	def train(self, training_data): # wyrzuca koncowa postac siatki a nie pojedyncza zmiane (nie da rady zrobic animacji)
+	def train(self, training_data): 
 		self.data = training_data
 		for t in range(self.steps):
 			index = np.random.choice(range(len(self.data)))
@@ -22,7 +21,7 @@ class Kohonen(object):
 			best_neuron = self.find_best_neuron(self.data[index])
 			self.update_som(best_neuron, self.data[index], t)
 
-	def train_step(self, training_data): # wyrzuca koncowa postac siatki a nie pojedyncza zmiane (nie da rady zrobic animacji)
+	def train_step(self, training_data): 
 		self.data = training_data
 		index = np.random.choice(range(len(self.data)))
 		best_neuron = self.find_best_neuron(self.data[index])
