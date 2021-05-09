@@ -17,7 +17,7 @@ and <img src="https://latex.codecogs.com/png.image?\dpi{100}&space;\theta&space;
 
 ```python DeepLearnig.py```
 
-If you want specify hyperparameters: alpha0 and sigma.
+If you want specify hyperparameters: alpha0 and sigma use:
 
 ```python DeepLearnig.py 0.6 0.8```
 
