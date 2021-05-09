@@ -5,7 +5,7 @@ It is Deep Learning project visualizes training process of self-organizing map
 * numpy
 * pygame
 ## Theory 
-SOM is recursive neural network which can be present as a graph in n-dimensional space. Traning this network is about changing position of vertex based on training data. Change are started from the nearest neighbour to its neighbour, . 
+SOM is recursive neural network which can be present as a graph in n-dimensional space. Traning this network is about changing position of vertex based on training data. Change are started from the nearest neighbour to its neighbour. 
 The update formula for a neuron v with weight vector W<sub>v</sub>(s) is
 
 <img src="https://latex.codecogs.com/png.image?\dpi{100}&space;W_{v}(s&plus;1)=W_{v}(s)&plus;\theta&space;(u,v)\cdot&space;\alpha&space;(s)\cdot&space;(Data(t)-W_{v}(s))" title="W_{v}(s+1)=W_{v}(s)+\theta (u,v)\cdot \alpha (s)\cdot (Data(t)-W_{v}(s))" />
@@ -15,10 +15,10 @@ and <img src="https://latex.codecogs.com/png.image?\dpi{100}&space;\theta&space;
 
 ## Start 
 
-```python DeepLearnig.py```
+```python DeepLearning.py```
 
 If you want specify hyperparameters: alpha0 and sigma use:
 
-```python DeepLearnig.py 0.6 0.8```
+```python DeepLearning.py 0.6 0.8```
 
 Also it is possible to declare size of map using up and down button. Then click `run` button and see 400 animation frames of learnig network.  
