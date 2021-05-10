@@ -21,4 +21,17 @@ If you want specify hyperparameters: alpha0 and sigma.
 
 ```python DeepLearnig.py 0.6 0.8```
 
-Also it is possible to declare size of map using up and down button. Then click `run` button and see 400 animation frames of learnig network.  
+## Example
+Also it is possible to declare size of map using up and down button. Then click `run` button and see 400 animation frames of learnig network.
+
+### Training data 
+Before run training it is required to get training data by clicking on green widow. By doing point we set data as hight and weight in 2-dimensional space.
+
+![Dataset](img/dataset.png)
+
+### Result
+alpha0 = 0.4
+
+sigma = 0.8
+
+![SOM](img/SOM.png)
